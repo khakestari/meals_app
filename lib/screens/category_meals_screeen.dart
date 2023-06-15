@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 
-import './dummy_data.dart';
+import '../widgets/meal_item.dart';
+import '../dummy_data.dart';
 
 class CategoryMealsScreen extends StatelessWidget {
   static const routName = '/category-meals';
   // final String categoryId;
   // final String categoryTitle;
   // CategoryMealsScreen(this.categoryId, this.categoryTitle);
-  
+
   @override
   Widget build(BuildContext context) {
     final routeArgs =
@@ -20,13 +21,18 @@ class CategoryMealsScreen extends StatelessWidget {
       },
     ).toList();
     return Scaffold(
-      appBar: AppBar(title: Text(categoryTitle!)),
+        appBar: AppBar(title: Text(categoryTitle!)),
         body: ListView.builder(
           itemBuilder: (context, index) {
-            return Text(categoryMeals[index].title);
+            return MealItem(
+              categoryMeals[index].title,
+              categoryMeals[index].imageUrl,
+              categoryMeals[index].duration,
+              categoryMeals[index].complexity,
+              categoryMeals[index].affordability,
+            );
           },
           itemCount: categoryMeals.length,
-        )
-    );
+        ));
   }
 }
