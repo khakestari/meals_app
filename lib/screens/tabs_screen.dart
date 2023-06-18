@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+
+import '../widgets/main_drawer.dart';
 import './favorites_screen.dart';
 import './categories_screen.dart';
 
@@ -30,6 +32,7 @@ final List<Map<String, dynamic>> _pages = [
           _pages[selectedPageIndex]['title'],
         ),
       ),
+      drawer: MainDrawer(),
       body: _pages[selectedPageIndex]['page'],
       bottomNavigationBar: BottomNavigationBar(
           onTap: _selectPage,
