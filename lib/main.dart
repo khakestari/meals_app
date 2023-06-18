@@ -14,16 +14,16 @@ class MyApp extends StatelessWidget {
       title: 'DeliMeals',
       theme: ThemeData(
         primarySwatch: Colors.pink,
-        canvasColor: Color.fromRGBO(255, 254, 229, 1),
+        canvasColor: const Color.fromRGBO(255, 254, 229, 1),
         fontFamily: 'Raleway',
         textTheme: ThemeData.light().textTheme.copyWith(
-            bodyText1: TextStyle(
+            bodyText1: const TextStyle(
               color: Color.fromRGBO(20, 51, 51, 1),
             ),
-            bodyText2: TextStyle(
+            bodyText2: const TextStyle(
               color: Color.fromRGBO(20, 51, 51, 1),
             ),
-            headlineLarge: TextStyle(
+            headlineLarge: const TextStyle(
               fontSize: 20,
               fontFamily: 'RobotoCondensed',
               fontWeight: FontWeight.bold,
@@ -34,8 +34,7 @@ class MyApp extends StatelessWidget {
       routes: {
         '/': (ctx) => CategoriesScreen(), //home
         CategoryMealsScreen.routName: (ctx) => CategoryMealsScreen(),
-        // MealDetailScreen.routName: (ctx) => MealDetailScreen(),
-
+        MealDetailScreen.routName: (ctx) => MealDetailScreen(),
       },
       // routs which is not write above here
       //                                    ///
