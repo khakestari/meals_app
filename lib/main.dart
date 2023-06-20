@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
 
 import './dummy_data.dart';
@@ -27,6 +25,8 @@ class _MyAppState extends State<MyApp> {
 
 
   List<Meal> _filteredMeals = DUMMY_MEALS;
+  List<Meal> _favoritedMeals = [];
+
 
   void _setFilters(Map<String, bool> filterData) {
     setState(() {
@@ -48,8 +48,25 @@ class _MyAppState extends State<MyApp> {
       }).toList();
       // print(_filteredMeals);
     });
+
   }
-  
+
+  void _toggleFavorites(String mealId) {
+    final existingIndex =
+        _favoritedMeals.indexWhere((meal) => meal.id == mealId);
+    if (existingIndex >= 0) {
+      setState(() {
+        _favoritedMeals.removeAt(existingIndex);
+      });
+    }
+    setState(() {
+      _favoritedMeals.add(DUMMY_MEALS.firstWhere((meal) => meal.id == mealId));
+    });
+  }
+
+  bool _isMealFavorite(String id) {
+    return _favoritedMeals.any((meal) => meal.id == id);
+  }
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -74,10 +91,11 @@ class _MyAppState extends State<MyApp> {
       // home: CategoriesScreen(),
       initialRoute: '/',
       routes: {
-        '/': (ctx) => const TebsScreen(), //home
+        '/': (ctx) => TebsScreen(_favoritedMeals), //home
         CategoryMealsScreen.routName: (ctx) =>
             CategoryMealsScreen(_filteredMeals),
-        MealDetailScreen.routName: (ctx) => MealDetailScreen(),
+        MealDetailScreen.routName: (ctx) =>
+            MealDetailScreen(_toggleFavorites, _isMealFavorite),
         FiltersScreen.routName: (ctx) => FiltersScreen(_filters, _setFilters),
       },
       // routs which is not write above here

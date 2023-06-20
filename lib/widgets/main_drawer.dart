@@ -25,10 +25,10 @@ class MainDrawer extends StatelessWidget {
       child: Column(
         children: <Widget>[
           Container(
-            height: 120,
+            height: 150,
             width: double.infinity,
             padding: const EdgeInsets.all(20),
-            alignment: Alignment.centerLeft,
+            alignment: Alignment.bottomLeft,
             color: Colors.orangeAccent,
             child: Text(
               'Cooking Up!',
